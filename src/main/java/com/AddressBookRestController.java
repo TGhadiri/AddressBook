@@ -18,12 +18,16 @@ public class AddressBookRestController {
 
     @PostMapping(value="/addressbook", produces = "application/json")
     @ResponseBody
-    public AddressBook createAddressBook(@RequestBody AddressBook addressBook) {
-        addressBookRepository.save(addressBook);
-        return addressBook;
+    public AddressBook createAddressBook() {
+        AddressBook ab = new AddressBook();
+        BuddyInfo bi = new BuddyInfo("Tra" , "ashgv", "12");
+        ab.addBuddy(bi);
+        addressBookRepository.save(ab);
+        return ab;
     }
     //We are doing a get to retrieve the buddies saved on the addressbook
-    @GetMapping(value="/addressbooks")
+    @GetMapping(value="/addressbooks", produces = "application/json")
+    @ResponseBody
     public Iterable<AddressBook> retrieveAll() {
         return addressBookRepository.findAll();
     }
