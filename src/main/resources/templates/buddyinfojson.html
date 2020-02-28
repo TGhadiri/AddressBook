@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>BuddyInfo</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script>
+        // $(document).ready(function(){
+        //     $("#submitBtn").click(function(){
+        //         $("#buddyForm").submit(); // Submit the form
+        //     });
+        // });
+        $(document).ready(function() {
+            $("#buddyForm").submit(function(event) {
+                event.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "/books/getbuddiesjson",
+                    data: $(this).serialize(),
+                    success: function(data) {
+                        console.log(data);
+                        
+                        // var table = $('<table>');
+                        // for(i=0; i<3; i++){
+                        //     var row = $('<tr>').text('result ' + i);
+                        //     table.append(row);
+                        // }
+                        //
+                        // $('#here_table').append(table);
+
+                    }
+                })
+
+            })
+        })
+</script>
+</head>
+<body>
+<h1>Buddy</h1>
+<!--<p th:text="'Name: ' + ${buddy.getName()}"/>-->
+<!--<p th:text="'Address: ' + ${buddy.getAddress()}"/>-->
+<!--<p th:text="'Number: ' + ${buddy.getPhoneNumber()}"/>-->
+<div id="here_table"></div>
+
+<table>
+    <tr>
+        <td>Name</td>
+        <td>Address</td>
+        <td>Number</td>
+    </tr>
+<!--    <tr th:each="buddy : ${buddies}">-->
+<!--        <td th:text="${buddy.getName()}"/>-->
+<!--        <td th:text="${buddy.getAddress()}"/>-->
+<!--        <td th:text="${buddy.getPhoneNumber()}"/>-->
+<!--    </tr>-->
+</table>
+
+<form action="/books/getbuddiesjson" method="post" th:object="${buddyInstance}" id="buddyForm">
+    <!--    <form action="#" th:action="@{/books/getbuddies}" method="post" th:object="${greeting}" enctype="multipart/form-data">-->
+    <div>
+        Buddy Name: <input type="text" th:field="*{name}" />
+    </div>
+    <div>
+        Buddy Address: <input type="text" th:field="*{address}" />
+    </div>
+    <div>
+        Buddy Phone: <input type="text" th:field="*{phoneNumber}" />
+    </div>
+    <div>
+        <input type="submit" value="Add buddy to address book" name="button" id="submitBtn"/>
+    </div>
+</form>
+
+</body>
+</html>

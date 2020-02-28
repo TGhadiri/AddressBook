@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>BuddyInfo</title>
+</head>
+<body>
+<h1>Buddy</h1>
+<!--<p th:text="'Name: ' + ${buddy.getName()}"/>-->
+<!--<p th:text="'Address: ' + ${buddy.getAddress()}"/>-->
+<!--<p th:text="'Number: ' + ${buddy.getPhoneNumber()}"/>-->
+
+<table>
+    <tr>
+        <td>Name</td>
+        <td>Address</td>
+        <td>Number</td>
+    </tr>
+<!--    <tr th:each="buddy : ${addressBook.getBuddies()}">-->
+<!--    <tr th:each="buddy : ${buddies}">-->
+    <tr>
+        <td th:text="${buddyInfo.name}"/>
+        <td th:text="${buddyInfo.address}"/>
+        <td th:text="${buddyInfo.phoneNumber}"/>
+    </tr>
+</table>
+
+<a href="/books/getbuddies">Make another buddy</a>
+</body>
+</html>

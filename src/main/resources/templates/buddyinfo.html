@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>BuddyInfo</title>
+</head>
+<body>
+<h1>Buddy</h1>
+<!--<p th:text="'Name: ' + ${buddy.getName()}"/>-->
+<!--<p th:text="'Address: ' + ${buddy.getAddress()}"/>-->
+<!--<p th:text="'Number: ' + ${buddy.getPhoneNumber()}"/>-->
+
+<table>
+    <tr>
+        <td>Name</td>
+        <td>Address</td>
+        <td>Number</td>
+    </tr>
+    <!--    <tr th:each="buddy : ${addressBook.getBuddies()}">-->
+    <tr th:each="buddy : ${buddies}">
+        <td th:text="${buddy.getName()}"/>
+        <td th:text="${buddy.getAddress()}"/>
+        <td th:text="${buddy.getPhoneNumber()}"/>
+    </tr>
+</table>
+
+<form action="#" th:action="@{/books/getbuddies}" method="post" th:object="${buddyInstance}">
+<!--    <form action="#" th:action="@{/books/getbuddies}" method="post" th:object="${greeting}" enctype="multipart/form-data">-->
+    <div>
+        Buddy Name: <input type="text" th:field="*{name}" />
+    </div>
+    <div>
+        Buddy Address: <input type="text" th:field="*{address}" />
+    </div>
+    <div>
+        Buddy Phone: <input type="text" th:field="*{phoneNumber}" />
+    </div>
+    <div>
+        <input type="submit" value="Add buddy to address book" name="button"/>
+    </div>
+</form>
+
+</body>
+</html>

@@ -17,6 +17,16 @@ public class AddressBook implements Serializable {
     @GeneratedValue
     private Long id;
 
+    public Long getId() {
+        return this.id;
+    }
+
+    private String name;
+
+    public List<BuddyInfo> getBuddies() {
+        return buddies;
+    }
+
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<BuddyInfo> buddies;
 
@@ -26,6 +36,14 @@ public class AddressBook implements Serializable {
 
     public AddressBook(ArrayList arrayList) {
         this.buddies=arrayList;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void addBuddy(BuddyInfo buddy){
@@ -62,6 +80,5 @@ public class AddressBook implements Serializable {
         Launcher launcher = new Launcher();
         launcher.launch();
     }
-
 
 }
